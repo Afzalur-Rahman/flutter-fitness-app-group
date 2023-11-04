@@ -1,0 +1,93 @@
+  import 'package:flutter/material.dart';
+    import 'package:pedometer/pedometer.dart';
+    import 'package:cupertino_icons/cupertino_icons.dart';
+    
+    void main() {
+    runApp(Fitme4stepApp());
+  }
+    
+    class Fitme4stepApp extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+    return MaterialApp(
+  title: 'Fitme4step',
+  theme: ThemeData(
+    primarySwatch: Colors.blue,
+    ),
+  home: Fitme4stepHomePage(),
+    );
+  }
+  }
+
+    class Fitme4stepHomePage extends StatefulWidget {
+    @override
+    _Fitme4stepHomePageState createState() => _Fitme4stepHomePageState();
+  }
+
+    class _Fitme4stepHomePageState extends State<Fitme4stepHomePage> {
+    // The pedometer object that provides the step count stream
+    Pedometer _pedometer;
+    
+    // The number of steps taken by the user
+    int _stepCount = 0;
+    
+    // The error message if any
+    String _error;
+    
+    @override
+    void initState() {
+    super.initState();
+    // Initialize the pedometer and start listening to the step count stream
+    _initPedometer();
+  }
+
+    // Initialize the pedometer and start listening to the step count stream
+    void _initPedometer() {
+    // Create a new pedometer object
+    _pedometer = Pedometer();
+
+    // Listen to the step count stream and update the state accordingly
+    _pedometer.stepCountStream.listen(
+    (int steps) {
+    setState(() {
+    _stepCount = steps;
+    _error = null;
+    });
+  },
+  onError: (Object error) {
+    setState(() {
+    _stepCount = 0;
+    _error = error.toString();
+    });
+  },
+  cancelOnError: true,
+    );
+  }
+
+    @override
+    Widget build(BuildContext context) {
+    return Scaffold(
+  appBar: AppBar(
+    title: Text('Fitme4step'),
+    ),
+  body: Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        // Display an icon for the app
+        Icon(
+        CupertinoIcons.walk,
+        size: 100,
+        color: Colors.blue,
+        ),
+        // Display the number of steps or an error message
+        Text(
+        _error ?? '$_stepCount steps',
+        style: TextStyle(fontSize: 30),
+        ),
+    ],
+    ),
+    ),
+    );
+  }
+  }

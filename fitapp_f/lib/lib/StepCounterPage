@@ -1,0 +1,40 @@
+dart
+class StepCounterPage extends StatefulWidget {
+ @override
+ _StepCounterPageState createState() => _StepCounterPageState();
+}
+
+class _StepCounterPageState extends State<StepCounterPage> {
+ int _stepCount = 0;
+
+ @override
+ Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Step Counter'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Step Count:',
+            ),
+            Text(
+              '$_stepCount',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            RaisedButton(
+              onPressed: () {
+                setState(() {
+                 _stepCount++;
+                });
+              },
+              child: Text('Increment'),
+            ),
+          ],
+        ),
+      ),
+    );
+ }
+}

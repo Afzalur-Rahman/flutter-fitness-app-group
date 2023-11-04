@@ -1,0 +1,45 @@
+dart
+class HomePage extends StatelessWidget {
+ @override
+ Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                 context,
+                 MaterialPageRoute(builder: (context) => StepCounterPage()),
+                );
+              },
+              child: Text('Step Counter'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                 context,
+                 MaterialPageRoute(builder: (context) => BMICalculatorPage()),
+                );
+              },
+              child: Text('BMI Calculator'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                 context,
+                 MaterialPageRoute(builder: (context) => MapPage()),
+                );
+              },
+              child: Text('Map'),
+            ),
+          ],
+        ),
+      ),
+    );
+ }
+}

@@ -1,0 +1,70 @@
+dart
+class BMICalculatorPage extends StatefulWidget {
+ @override
+ _BMICalculatorPageState createState() => _BMICalculatorPageState();
+}
+
+class _BMICalculatorPageState extends State<BMICalculatorPage> {
+ double _height = 180;
+ double _weight = 70;
+ String _bmi = '';
+
+ @override
+ Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('BMI Calculator'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Height:',
+            ),
+            Slider(
+              value: _height,
+              min: 120,
+              max: 220,
+              onChanged: (double value) {
+                setState(() {
+                 _height = value;
+                });
+              },
+            ),
+            Text(
+              'Weight:',
+            ),
+            Slider(
+              value: _weight,
+              min: 30,
+              max: 150,
+              onChanged: (double value) {
+                setState(() {
+                 _weight = value;
+                });
+              },
+            ),
+            Text(
+              'BMI:',
+            ),
+            Text(
+              _bmi,
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            RaisedButton(
+              onPressed: () {
+                setState(() {
+                 double heightInMeters = _height / 100;
+                 double bmi = _weight / (heightInMeters * heightInMeters);
+                 _bmi = bmi.toStringAsFixed(1);
+                });
+              },
+              child: Text('Calculate'),
+            ),
+          ],
+        ),
+      ),
+    );
+ }
+}
