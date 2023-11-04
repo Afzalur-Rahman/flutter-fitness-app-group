@@ -1,6 +1,7 @@
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:personal_fit/homepage.dart';
 import 'package:personal_fit/password_reset.dart';
 
 class MyLogin extends StatefulWidget {
@@ -167,8 +168,12 @@ class _MyLoginState extends State<MyLogin> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    GestureDetector(
-                                      onTap: () => navigateToCalorieSpend(context),
+                                    /*GestureDetector(
+                                      onTap: () => navigateToCalorieSpend(context),*/
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => const FitnessApp()));
+                                      },
                                       child: const CircleAvatar(
                                         radius: 30,
                                         backgroundColor: Color(0xFFA3C1AD),

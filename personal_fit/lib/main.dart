@@ -5,6 +5,7 @@ import 'login.dart';
 import 'register.dart';
 import 'introduction_screen.dart';
 import 'calorie_spend.dart';
+import 'homepage.dart';
 
 
 void main() async {
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         'register': (context) => const MyRegister(),
         'introduction_screen': (context) => OnboardingScreen(),
         'calorie_spend': (context) =>  const CalorieSpendPage(),
+        'homepage' : (context)=> const FitnessApp(),
       },
     );
   }
